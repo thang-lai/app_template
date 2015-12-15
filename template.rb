@@ -10,7 +10,6 @@
 
 def source_paths
   Array(super)
-  #[File.join(File.expand_path(File.dirname(__FILE__)),'app_template')]
   [File.expand_path(File.dirname(__FILE__))]
 end
 
@@ -47,7 +46,7 @@ gem_group :development, :test do
   gem 'spring'
   gem 'quiet_assets'
   gem 'pry-rails'
-  gem 'byebug'
+  gem 'pry-byebug'
   gem 'awesome_print'
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -78,7 +77,7 @@ generate 'devise User'
 generate 'devise:views'
 
 # set up the databases
-#rake "db:create", :env => 'development'
+rake "db:drop", :env => 'development'
 rake "db:create"
 rake 'db:migrate'
 
@@ -109,11 +108,15 @@ remove_file 'app/views/layouts/application.html.erb'
 remove_file 'app/views/devise/registrations/edit.html.erb'
 remove_file 'app/views/devise/registrations/new.html.erb'
 remove_file 'app/views/devise/sessions/new.html.erb'
+remove_file 'app/views/devise/passwords/new.html.erb'
+remove_file 'app/views/devise/passwords/edit.html.erb'
 
 copy_file 'layouts/application.html.erb', 'app/views/layouts/application.html.erb'
 copy_file 'devise/registrations/edit.html.erb', 'app/views/devise/registrations/edit.html.erb'
 copy_file 'devise/registrations/new.html.erb', 'app/views/devise/registrations/new.html.erb'
 copy_file 'devise/sessions/new.html.erb', 'app/views/devise/sessions/new.html.erb'
+copy_file 'devise/passwords/new.html.erb', 'app/views/devise/passwords/new.html.erb'
+copy_file 'devise/passwords/edit.html.erb', 'app/views/devise/passwords/edit.html.erb'
 
 copy_file 'devise/helpers/devise_helper.rb', 'app/helpers/devise_helper.rb'
 
